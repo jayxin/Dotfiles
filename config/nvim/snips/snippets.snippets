@@ -1,0 +1,11 @@
+# A snippet for writing snippets
+# The following snippet makes it easier to write more snippets.
+# To use it, touch the file ~/.vim/snips/snippets.snippets and inside it paste
+# the following code:
+snippet snip "A snippet for writing Ultisnips snippets" b
+`!p snip.rv = "snippet"` ${1:trigger} "${2:Description}" ${3:options}
+$4
+`!p snip.rv = "endsnippet"`
+$0
+endsnippet
+

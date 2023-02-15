@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =8
+let g:netrw_dirhist_8='/home/test/tmp'
+let g:netrw_dirhist_7='/home/test/.config/nvim'
+let g:netrw_dirhist_6='/home/test/.config/nvim/snips/tex'
+let g:netrw_dirhist_5='/home/test/.config/nvim'
+let g:netrw_dirhist_4='/home/test/.config/nvim/autoload'
+let g:netrw_dirhist_3='/home/test/.config/nvim/snips/tex'
+let g:netrw_dirhist_2='/home/test/.config/nvim/snips'
+let g:netrw_dirhist_1='/home/test/.config/nvim'
+let g:netrw_dirhist_0='/home/test'
+let g:netrw_dirhist_9='/home/test/.config/nvim/snips/tex'

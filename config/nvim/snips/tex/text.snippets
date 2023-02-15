@@ -1,0 +1,67 @@
+global !p
+def comment():
+    return vim.eval('vimtex#syntax#in_comment()') == '1'
+endglobal
+
+snippet hr "href" i
+\href{${1:url}}{${2:display name}}$0
+endsnippet
+# see also :h UltiSnips-placeholders
+
+snippet em "emphasized" i
+\emph{${1:${VISUAL}}}$0
+endsnippet
+
+snippet bf "boldface" i
+\textbf{${1:${VISUAL}}}$0
+endsnippet
+
+# The visual placeholder
+# It lets you use text selected in Vim's visual mode inside the content of a
+# snippet body.
+# 1. Create and save an UltiSnips snippet that includes the ${VISUAL} keyword.
+# 2. Use Vim to open a file in which you want to trigger the snippet.
+# 3. Use Vim's visual mode to select some text.
+# 4. Press the key stored in the g:UltiSnipsExpandTrigger variable. The
+# selected text is deleted, stored by UltniSnips in memory, and you are placed
+# into Vim's insert mode.
+# 5. Type the trigger to expand the previously-writen snippet that included
+# the ${VISUAL} keyword. The snippet expands, and the text you had seleced in
+# visual omde appears in place of the ${VISUAL} keyword in the snippet body.
+# You can have one visual placedholder per snippet, and you specify it with the
+# keyword which is usually(but does not have to be) integrated into tabstops.
+# You can still use any snippet that includes the ${VISUAL} keyword without
+# going through the select and tab procedure described above: you just type the
+# snippet trigger and use it like any other snippet.
+# See also :h UltiSnips-visual-placeholder
+snippet tii "The \textit{} command for italic font"
+\textit{${1:${VISUAL:}}}$0
+endsnippet
+
+snippet dd "brackets" iA
+{$1}$0
+endsnippet
+
+snippet tt "The \texttt{} command for typewriter-style font"
+\texttt{$1}$0
+endsnippet
+
+# Dynamic snippet
+snippet today "Date"
+`date +%F`
+endsnippet
+
+# Python code(!p)
+# These Python code blocks will be replaced by the value of the variable
+# snip.rv. Inside these blocks, you have access to the current state of the
+# snippet, e.g t[1] contains the first tab stop.
+snippet box "Box"
+`!p snip.rv = '┌' + '─' * (len(t[1]) + 2) + '┐'`
+| $1 |
+`!p snip.rv = '└' + '─' * (len(t[1]) + 2) + '┘'`
+$0
+endsnippet
+
+snippet bs "backslash" i
+\textbackslash
+endsnippet

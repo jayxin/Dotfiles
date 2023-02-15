@@ -1,0 +1,13 @@
+# background
+# set recolor-lightcolor "#fff1cb"
+set recolor-lightcolor "#e1dbc7"
+# set recolor-lightcolor "#cce6cc"
+
+set recolor-darkcolor "#6a5238"
+# set recolor-darkcolor "#000000" # font
+
+# map j navigate
+
+set synctex true
+set synctex-editor-command "nvr --remote-silent %f -c %l"
+

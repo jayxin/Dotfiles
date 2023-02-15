@@ -1,0 +1,64 @@
+global !p
+def math():
+  return vim.eval('vimtex#syntax#in_mathzone()') == '1'
+endglobal
+
+context "math()"
+snippet case "Cases" wA
+\begin{cases}
+    $1
+\end{cases}$0
+endsnippet
+
+# The w means that this snippet will expand at word boundaries.
+snippet ma "Math" wi
+$${1}$`!p
+if t[2] and t[2][0] not in [',', '.', '?', '-', ' ']:
+    snip.rv = ' '
+else:
+    snip.rv = ''
+`$2
+endsnippet
+
+# snippet ima "inline math env" i
+# \( $1 \)
+# endsnippet
+
+#snippet ma "inline math" i
+#\$$1\$$0
+#endsnippet
+
+snippet bm "Block math env" w
+\[
+${1:${VISUAL}}
+.\] $0
+endsnippet
+
+snippet pmat "pmat" iA
+\begin{pmatrix} $1 \end{pmatrix} $0
+endsnippet
+
+snippet bmat "bmat" iA
+\begin{bmatrix} $1 \end{bmatrix} $0
+endsnippet
+
+snippet cvec "column vector" iA
+\begin{pmatrix} ${1:x}_${2:1}\\\\ \vdots\\\\ $1_${2:n} \end{pmatrix}
+endsnippet
+
+#context "math()"
+#snippet '(?<!i)sts' "text subscript" irA
+#_\text{$1} $0
+#endsnippet
+
+context "math()"
+snippet tt "text" iA
+\text{${1:${VISUAL:}}}$0
+endsnippet
+
+snippet bigfun "Big function" iA
+\begin{align*}
+	$1: $2 &\longrightarrow $3 \\\\
+	$4 &\longmapsto $1($4) = $0
+.\end{align*}
+endsnippet

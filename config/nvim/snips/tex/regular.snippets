@@ -1,0 +1,54 @@
+# This class of triggers supresses expansion following alphanumeric text and
+# permits expansion after blank space, punctuation marks, braces and other
+# delimiters, etc.
+#snippet "([^a-zA-Z]trigger" "Expands if 'trigger' is typed after characters other than a-z or A-Z" r
+#`!p snip.rv = match.group(1)`snippet body
+#endsnippet
+#snippet "(^|[^a-zA-Z]trigger" "Expands on a new line or after characters other than a-z or A-Z" r
+#`!p snip.rv = match.group(1)`snippet body
+#endsnippet
+#snippet "(^|[\W])trigger" "Expands on a new line or after chars other than 0-9, a-z or A-Z" r
+#`!p snip.rv = match.group(1)`snippet body
+#endsnippet
+# The line `!p` inserts the regex group captured by the trigger parentheses
+# back into the original text.
+
+# Make mm expand to $$ including on new lines but not in words.
+snippet "(^|[^a-zA-Z])mm" "Inline LaTeX math" rA
+`!p snip.rv = match.group(1)`\$ ${1:${VISUAL:}} \$$0
+endsnippet
+
+# Make ee expand to e^{} after spaces, (, { and other delimiters but not in words
+snippet "([^a-zA-Z])ee" "e^{} superscript" rA
+`!p snip.rv = match.group(1)`e^{${1:${VISUAL:}}}$0
+endsnippet
+
+# Make ff expand to frac but not in words like off, offer, etc.
+snippet "(^|[^a-zA-Z])ff" "\frac{}{}" rA
+`!p snip.rv = match.group(1)`\frac{${1:${VISUAL:}}}{$2}$0
+endsnippet
+
+# The class of triggers expands only after alphanumerical chars(\w) or the chars
+# }, ), ] and |.
+# Expands if 'trigger' is typed after 0-9, a-z and A-Z.
+#snippet "([\w])trigger" "" r
+#`!p snip.rv = match.group(1)`snippetbody
+#endsnippet
+#snippet "([\w]|[\}\)\]\|])trigger" "" r
+#`!p snip.rv = match.group(1)`snippetbody
+#endsnippet
+#supress expansion after numbers
+#snippet "([a-zA-Z]|[\}\)\]\|])trigger" "" r
+#`!p snip.rv = match.group(1)`snippetbody
+#endsnippet
+
+# Quickly insert a zero subscript
+snippet "([a-zA-Z]|[\}\)\]\|])00" "Automatic 0 subscript" rA
+`!p snip.rv = match.group(1)`_{0}
+endsnippet
+
+# Snippet for math subscripts with upright font
+snippet "([\w]\[\}\)\]\|])sd" "Subscript with upright text" rA
+`!p snip.rv = match.group(1)`_{\mathrm{${1:${VISUAL:}}}}$0
+endsnippet
+
